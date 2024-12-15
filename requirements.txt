@@ -1,0 +1,15 @@
+notebook~=7.3.1
+numpy~=2.2.0
+pandas~=2.2.3
+pillow~=11.0.0
+polars~=1.17.0
+pyowm~=3.3.0
+streamlit~=1.40.2
+matplotlib~=3.9.3
+seaborn~=0.13.2
+requests~=2.32.3
+aiohttp~=3.11.10
+methodtools~=0.4.7
+cachetools~=5.5.0
+plotly~=5.24.1
+statsmodels~=0.14.4
