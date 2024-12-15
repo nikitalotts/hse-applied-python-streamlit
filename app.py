@@ -113,7 +113,7 @@ async def render_seasonal_profile(data_manager: DataManager, city: str):
         color="is_anomaly_season",
         color_discrete_map={True: "red", False: "lightgreen"},
         labels={"is_anomaly": "Anomaly"},
-        title="Temperature analysis",
+        title="Seasonal temperature analysis",
         size_max=10
     )
     fig.update_traces(marker=dict(size=6), selector=dict(mode="markers"))
@@ -158,6 +158,7 @@ async def render_seasonal_profile(data_manager: DataManager, city: str):
 
     st.plotly_chart(fig, use_container_width=True)
 
+
 async def render_trend(data_manager: DataManager, city: str):
     trend = data_manager.get_trend(city)
     if trend is not None:
@@ -196,7 +197,7 @@ async def render_anomalies(data_manager: DataManager, city: str):
         color="is_anomaly",
         color_discrete_map={True: "red", False: "lightblue"},
         labels={"is_anomaly": "Anomaly"},
-        title=f"Anomalies And Bounds For {city}",
+        title=f"Moving Average Temperature Analysis For {city}",
     )
 
     fig.add_scatter(
