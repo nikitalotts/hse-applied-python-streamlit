@@ -143,11 +143,31 @@ class DataManager:
             return None
 
     def get_describe_statisic(self, city: str):
-        return self.get_data_by_city(city)["temperature"].describe()
+        description = self.get_data_by_city(city)["temperature"].describe()
+        if not self.parallel:
+            return description
+
+        stat = description['value'].to_list()
+
+        statistic_mapping = {
+            'Number of Observations (days)': str(stat[0]),
+            'Average Temperature': f"{stat[1]:.2f} °C",
+            'Temperature Variation': f"{stat[2]:.2f} °C",
+            'Lower Quartile': f"{stat[3]:.2f} °C",
+            'Median Temperature': f"{stat[4]:.2f} °C",
+            'Upper Quartile': f"{stat[5]:.2f} °C",
+            'Max Temperature': f"{stat[6]:.2f} °C"
+        }
+
+        return pl.DataFrame({
+            "Statistic": list(statistic_mapping.keys()),
+            "Value": list(statistic_mapping.values()),
+        }, strict=False)
 
 
     def get_data(self) -> Union[pl.DataFrame, pd.DataFrame]:
         return self.data
+
 
     def get_cities(self) -> Union[pl.Series, pd.Series]:
         return sorted(self.data["city"].unique())
@@ -373,10 +393,12 @@ def ensure_file():
 
 
 def test(file_path: str, parallel: bool = True):
+    city = "Moscow"
     file_path = os.path.join(os.path.dirname(__file__), 'files_folder', file_path)
     start_time = time.time()
     data_manager = DataManager(file_path, parallel)
-    data_manager.detect_anomalies("Moscow")
+    data_manager.detect_anomalies(city)
+    data_manager.get_describe_statisic(city)
     print("Время выполнения (parallel={}): {}".format(parallel, time.time() - start_time))
 
 
