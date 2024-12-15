@@ -151,12 +151,13 @@ class DataManager:
 
         statistic_mapping = {
             'Number of Observations (days)': str(stat[0]),
-            'Average Temperature': f"{stat[1]:.2f} °C",
-            'Temperature Variation': f"{stat[2]:.2f} °C",
-            'Lower Quartile': f"{stat[3]:.2f} °C",
-            'Median Temperature': f"{stat[4]:.2f} °C",
-            'Upper Quartile': f"{stat[5]:.2f} °C",
-            'Max Temperature': f"{stat[6]:.2f} °C"
+            'Average Temperature': f"{stat[2]:.2f} °C",
+            'Temperature Variation': f"{stat[3]:.2f} °C",
+            'Min Temperature': f"{stat[4]:.2f} °C",
+            'Lower Quartile': f"{stat[5]:.2f} °C",
+            'Median Temperature': f"{stat[6]:.2f} °C",
+            'Upper Quartile': f"{stat[7]:.2f} °C",
+            'Max Temperature': f"{stat[8]:.2f} °C"
         }
 
         return pl.DataFrame({
