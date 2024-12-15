@@ -163,7 +163,7 @@ class DataManager:
         return pl.DataFrame({
             "Statistic": list(statistic_mapping.keys()),
             "Value": list(statistic_mapping.values()),
-        }, strict=False)
+        })
 
 
     def get_data(self) -> Union[pl.DataFrame, pd.DataFrame]:
